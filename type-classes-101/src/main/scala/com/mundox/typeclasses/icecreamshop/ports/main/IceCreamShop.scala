@@ -7,6 +7,6 @@ object IceCreamShop extends App {
 
   println(s"Welcome to our Ice Cream Store")
   println(s"So, your order is a Chocolate with Vanilla Ice Cream and with a Cookie, please hold on...")
-  val iceCreamRequested = DTODummies.buildChocolateVainillaCookieIceCream()
+  val iceCreamRequested = DTODummies.buildChocolateVanillaCookieIceCream()
   val iceCreamMachineService = new IceCreamMachineAdapter
 }
