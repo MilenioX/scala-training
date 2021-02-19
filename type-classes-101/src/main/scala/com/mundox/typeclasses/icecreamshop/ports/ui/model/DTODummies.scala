@@ -9,4 +9,13 @@ final object DTODummies {
       Some(12),
       List(AddonsDTO("cookie"))
     )
+
+  def buildTuttiFruitWithChipsInACone(): IceCreamDTO =
+    IceCreamDTO(
+      Some(OneScoopIceCreamDTO(FlavorDTO("tutti fruit"))),
+      None,
+      "cone",
+      None,
+      List(AddonsDTO("chips"))
+    )
 }
