@@ -1,6 +1,4 @@
-package com.mundox.typeclasses.icecreamshop.ports.tcSyntaxes
-
-import com.mundox.typeclasses.icecreamshop.core.typeclasses.TransformToDomain
+package com.mundox.typeclasses.icecreamshop.core.typeclasses
 
 /*
   Step 3: The Api interface
