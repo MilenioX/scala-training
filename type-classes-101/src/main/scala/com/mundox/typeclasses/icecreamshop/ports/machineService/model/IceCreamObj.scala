@@ -4,7 +4,7 @@ import com.mundox.typeclasses.icecreamshop.core.model.{Cone, Cup, IceCream, IceC
 
 final case class IceCreamObj(flavors: FlavorsObj,
                              presentation: String,
-                             sizeCup: Int,
+                             size: String,
                              addons: AddonsListObj)
 
 object IceCreamObj {
@@ -16,9 +16,9 @@ object IceCreamObj {
       AddonsListObj(iceCream.addons.map(addons => AddonsObj(addons)))
     )
 
-  def getPresentation(presentation: IceCreamPresentation): (String,Int) =
+  def getPresentation(presentation: IceCreamPresentation): (String,String) =
     presentation match {
-      case cup: Cup => ("cup", cup.size)
-      case _: Cone => ("cone", 0)
+      case cup: Cup => ("cup", cup.oz.toString)
+      case cone: Cone => ("cone", cone.size)
     }
 }

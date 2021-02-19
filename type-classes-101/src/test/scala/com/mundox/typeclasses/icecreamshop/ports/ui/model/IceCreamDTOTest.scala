@@ -21,7 +21,7 @@ class IceCreamDTOTest extends AnyFlatSpec with Matchers {
         iceCream.presentation match {
           case _: Cone => fail()
           case cup: Cup => {
-            cup.size shouldEqual 12
+            cup.oz shouldEqual 12
           }
         }
         iceCream.addons.length shouldEqual 1
@@ -58,7 +58,7 @@ class IceCreamDTOTest extends AnyFlatSpec with Matchers {
     result match {
       case Right(_) => fail()
       case Left(error) => {
-        error shouldEqual "Select an Ice Cream type please"
+        error shouldEqual "Select an Ice Cream presentation please"
       }
     }
   }

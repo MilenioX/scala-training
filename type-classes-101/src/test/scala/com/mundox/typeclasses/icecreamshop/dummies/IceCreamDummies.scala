@@ -15,6 +15,6 @@ object IceCreamDummies {
   def buildIceCreamOneFlavorInACone(): IceCream =
     IceCream(
       OneScoopIceCream(Vanilla()),
-      Cone(),
+      Cone("M"),
       Seq(Chips()))
 }

@@ -3,19 +3,17 @@ package com.mundox.typeclasses.icecreamshop.ports.ui.model
 final object DTODummies {
   def buildChocolateVanillaCookieIceCream() : IceCreamDTO =
     IceCreamDTO(
+      TwoScoopsIceCreamDTO(FlavorDTO("chocolate"), FlavorDTO("vanilla")),
+      Some(CupDTO(12)),
       None,
-      Some(TwoScoopsIceCreamDTO(FlavorDTO("chocolate"), FlavorDTO("vanilla"))),
-      "cup",
-      Some(12),
       List(AddonsDTO("cookie"))
     )
 
   def buildTuttiFruitWithChipsInACone(): IceCreamDTO =
     IceCreamDTO(
-      Some(OneScoopIceCreamDTO(FlavorDTO("tutti fruit"))),
+      OneScoopIceCreamDTO(FlavorDTO("tutti fruit")),
       None,
-      "cone",
-      None,
+      Some(ConeDTO("M")),
       List(AddonsDTO("chips"))
     )
 }

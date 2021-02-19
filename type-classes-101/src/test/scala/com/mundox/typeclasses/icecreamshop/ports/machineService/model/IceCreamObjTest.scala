@@ -12,7 +12,7 @@ class IceCreamObjTest extends AnyFlatSpec with Matchers {
     iceCreamObj.flavors.flavors(0).name shouldEqual "vanilla"
     iceCreamObj.flavors.flavors(1).name shouldEqual "chocolate"
     iceCreamObj.presentation shouldEqual "cup"
-    iceCreamObj.sizeCup shouldEqual 24
+    iceCreamObj.size shouldEqual "24"
     iceCreamObj.addons.addons.size shouldEqual 1
     iceCreamObj.addons.addons(0).name shouldEqual "kellogg"
   }
@@ -22,7 +22,7 @@ class IceCreamObjTest extends AnyFlatSpec with Matchers {
     iceCreamObj.flavors.flavors.size shouldEqual 1
     iceCreamObj.flavors.flavors(0).name shouldEqual "vanilla"
     iceCreamObj.presentation shouldEqual "cone"
-    iceCreamObj.sizeCup shouldEqual 0
+    iceCreamObj.size shouldEqual "M"
     iceCreamObj.addons.addons.size shouldEqual 1
     iceCreamObj.addons.addons(0).name shouldEqual "chips"
   }

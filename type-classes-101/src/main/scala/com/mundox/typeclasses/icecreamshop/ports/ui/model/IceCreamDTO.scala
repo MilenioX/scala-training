@@ -1,32 +1,31 @@
 package com.mundox.typeclasses.icecreamshop.ports.ui.model
 
-import com.mundox.typeclasses.icecreamshop.core.model.{Cone, Cup, IceCream, IceCreamPresentation}
+import com.mundox.typeclasses.icecreamshop.core.model.IceCream
 
-final case class IceCreamDTO(oneScoopIceCream: Option[OneScoopIceCreamDTO],
-                             twoScoopsIceCream: Option[TwoScoopsIceCreamDTO],
-                             presentation: String,
-                             sizeCup: Option[Int],
+final case class IceCreamDTO(iceCreamDetail: IceCreamDetailDTO,
+                             cup: Option[CupDTO],
+                             cone: Option[ConeDTO],
                              addons: List[AddonsDTO])
 
 
 object IceCreamDTO {
   def toDomain(iceCreamDTO: IceCreamDTO): Either[String, IceCream] = {
-    iceCreamDTO.oneScoopIceCream.fold(iceCreamDTO.twoScoopsIceCream.fold[Either[String, IceCream]](Left("Select an Ice Cream type please"))(twoScoops => {
+    iceCreamDTO.cup.fold(iceCreamDTO.cone.fold[Either[String, IceCream]](Left("Select an Ice Cream presentation please"))(coneDTO => {
       Right(IceCream(
-        TwoScoopsIceCreamDTO.toDomain(twoScoops),
-        toPresentationDomain(iceCreamDTO.presentation, iceCreamDTO.sizeCup),
+        iceCreamDTO.iceCreamDetail match {
+          case one: OneScoopIceCreamDTO => OneScoopIceCreamDTO.toDomain(one)
+          case two: TwoScoopsIceCreamDTO => TwoScoopsIceCreamDTO.toDomain(two)
+        },
+        ConeDTO.toDomain(coneDTO),
         iceCreamDTO.addons.map(addonsDTO => AddonsDTO.toDomain(addonsDTO))))
-    }))(oneScoop => {
+    }))(cupDTO => {
       Right(IceCream(
-        OneScoopIceCreamDTO.toDomain(oneScoop),
-        toPresentationDomain(iceCreamDTO.presentation, iceCreamDTO.sizeCup),
+        iceCreamDTO.iceCreamDetail match {
+          case one: OneScoopIceCreamDTO => OneScoopIceCreamDTO.toDomain(one)
+          case two: TwoScoopsIceCreamDTO => TwoScoopsIceCreamDTO.toDomain(two)
+        },
+        CupDTO.toDomain(cupDTO),
         iceCreamDTO.addons.map(addonsDTO => AddonsDTO.toDomain(addonsDTO))))
     })
   }
-
-  def toPresentationDomain(presentation: String, sizeCup: Option[Int]): IceCreamPresentation =
-    presentation match {
-      case "cup" => Cup(sizeCup.getOrElse(12))
-      case "cone" => Cone()
-    }
 }
