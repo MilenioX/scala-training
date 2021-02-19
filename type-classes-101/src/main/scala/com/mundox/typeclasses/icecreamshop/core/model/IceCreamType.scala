@@ -5,6 +5,6 @@ sealed trait IceCreamType
 case class OneScoopIceCream(mainFlavor: Flavor)
   extends IceCreamType
 
-case class TwoScoopIceCream(mainFlavor: Flavor,
+case class TwoScoopsIceCream(mainFlavor: Flavor,
                             secondaryFlavor: Flavor)
   extends IceCreamType
