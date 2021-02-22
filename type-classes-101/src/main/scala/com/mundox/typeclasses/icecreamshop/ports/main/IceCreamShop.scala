@@ -3,12 +3,15 @@ package com.mundox.typeclasses.icecreamshop.ports.main
 import com.mundox.typeclasses.icecreamshop.ports.adapters.IceCreamMachineAdapter
 import com.mundox.typeclasses.icecreamshop.ports.machineService.service.Machine
 import com.mundox.typeclasses.icecreamshop.ports.ui.model.{DTODummies, IceCreamDTO}
+import com.mundox.typeclasses.icecreamshop.core.typeclasses.ToDomainSyntax.ToDomainOps
+import com.mundox.typeclasses.icecreamshop.ports.tcsinstances.IceCreamToDomainInstances.iceCreamToDomain
 
 object IceCreamShop extends App {
 
   def prepareAnIceCream(iceCreamDTO: IceCreamDTO): Unit = {
+
     for {
-      iceCream <- IceCreamDTO.toDomain(iceCreamDTO)
+      iceCream <- iceCreamDTO.toDomain
     } yield iceCreamMachineService.prepareAnIceCream(iceCream)
   }
 

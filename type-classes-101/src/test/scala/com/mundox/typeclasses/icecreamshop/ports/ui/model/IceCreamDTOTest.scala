@@ -4,11 +4,13 @@ import com.mundox.typeclasses.icecreamshop.core.model.{Cone, Cup, OneScoopIceCre
 import com.mundox.typeclasses.icecreamshop.dummies.IceCreamDTODummies
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import com.mundox.typeclasses.icecreamshop.core.typeclasses.ToDomainSyntax.ToDomainOps
+import com.mundox.typeclasses.icecreamshop.ports.tcsinstances.IceCreamToDomainInstances.iceCreamToDomain
 
 class IceCreamDTOTest extends AnyFlatSpec with Matchers {
 
   "The Ice Cream DTO toDomain method" should "returns an IceCream with two flavors Object" in {
-    val result = IceCreamDTO.toDomain(IceCreamDTODummies.buildChocolateVanillaCookieIceCream())
+    val result = IceCreamDTODummies.buildChocolateVanillaCookieIceCream().toDomain
     result match {
       case Right(iceCream) => {
         iceCream.iceCreamType match {
@@ -32,7 +34,7 @@ class IceCreamDTOTest extends AnyFlatSpec with Matchers {
   }
 
   "The Ice Cream DTO toDomain method" should "returns an IceCream with one flavor Object" in {
-    val result = IceCreamDTO.toDomain(IceCreamDTODummies.buildTuttiFruitWithChipsInACone())
+    val result = IceCreamDTODummies.buildTuttiFruitWithChipsInACone().toDomain
     result match {
       case Left(_) => fail()
       case Right(iceCream) => {
@@ -52,8 +54,8 @@ class IceCreamDTOTest extends AnyFlatSpec with Matchers {
     }
   }
 
-  "The Ice Cream DTO toDomain method" should "returns an String with an Alert" in {
-    val result = IceCreamDTO.toDomain(IceCreamDTODummies.buildNoFlavorWithKellogInACup())
+  "The Ice Cream DTO toDomain method" should "returns an String with an Error" in {
+    val result = IceCreamDTODummies.buildNoFlavorWithKellogInACup().toDomain
     println(result)
     result match {
       case Right(_) => fail()
