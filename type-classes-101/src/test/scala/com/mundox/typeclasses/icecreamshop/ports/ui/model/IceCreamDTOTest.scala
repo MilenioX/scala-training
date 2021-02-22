@@ -60,7 +60,7 @@ class IceCreamDTOTest extends AnyFlatSpec with Matchers {
     result match {
       case Right(_) => fail()
       case Left(error) => {
-        error shouldEqual "Select an Ice Cream presentation please"
+        error shouldEqual "Error with the presentation value"
       }
     }
   }
